@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Login</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Employee Login</h1>
+  <form id="login-form">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+    <button type="submit">Login</button>
+  </form>
+  <br>
+  <button id="register-button">Register</button>
+
+  <script>
+    // 登录逻辑
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      // 获取本地存储中的用户数据
+      const users = JSON.parse(localStorage.getItem('users')) || {};
+
+      if (users[username] && users[username] === password) {
+        alert('Login successful');
+        window.location.href = 'upload.html'; // 跳转到上传页面
+      } else {
+        alert('Invalid username or password');
+      }
+    });
+
+    // 跳转到注册页面
+    document.getElementById('register-button').addEventListener('click', function() {
+      window.location.href = 'register.html';
+    });
+  </script>
+</body
